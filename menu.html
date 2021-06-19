@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+    #menu{border: 4px solid yellowgreen; width:0px; position: absolute;left:-250px;}
+    .button{width: 0px; left: -250px;}
+    .user-list{position: absolute; left: 500px;}
+</style>
+</head>
+<body>
+<div><button id="open_menu">menu</button></div>
+<div id="menu">
+<button class="button" id="test-ajax" type="button">Kliknij i zobacz w konsoli debugera</button>
+<button class="button">pozycja 2</button>
+<button class="button">pozycja 3</button>
+<button class="button">pozycja 4</button>
+<button class="button">pozycja 5</button>
+</div>
+<ul class="user-list"></ul>
+<script type="text/javascript">
+const apiUrl = "https://jsonplaceholder.typicode.com";
+const $list = $('.user-list');
+
+$('#test-ajax').on('click', function() {
+    const $btn = $(this);
+
+
+
+    $.ajax({
+        url : apiUrl + '/users',
+        dataType : 'json'
+    })
+    .done((res) => {
+        $list.empty();
+
+        res.forEach(el => {
+            $list.append(`<li>${el.address.geo.lat} : ${el.address.geo.lng}</li>`);
+        })
+    })
+    .always(() => {
+        $btn.removeClass('loading');
+        $btn.prop('disabled', false);
+    });
+});
+</script>
+
+<script>
+     $(document).ready(function(){
+        $("#open_menu").click(function(){
+        $("#menu").animate({width:500, left:'0px'}, 500);
+        $(".button").animate({width:500, left:'0px'}, 500);
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+        $('#pierwszy')
+        .css({ background : 'blue' })
+        .delay(2000)
+        .slideUp() 
+        .delay(1000) 
+        .fadeIn(1000); 
+        });
+
+    </script> 
+
+    <script>
+        $(document).ready(function(){
+        $("#testAnim").click(function(){
+        $(this).animate({
+        width: "500px",
+        opacity: 0.4,
+        fontSize: "3em",
+        borderWidth: "10px"
+    }, 1500);
+    });
+    });
+
+    </script>
+
+    <script>
+        $(document).ready(function(){
+        $("#testAnim6").on({ 
+        'mouseover' : function() { $(this).stop().animate({width:400}, 500); }, 'mouseout' : function() { $(this).stop().animate({width:200}, 500); } });
+        });
+
+    </script>
+</head>
+<body>
+    <div id="pierwszy" style="font-size: large; color: white;">TEST</div>
+    <button type="button" class="button" id="testAnim">Animacja</button> 
+    <div style="border: 4px solid rgb(205, 50, 179); width:200px;" id="testAnim6">mouseover</div>
+
+</body>
+</html>
